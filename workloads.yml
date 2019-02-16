@@ -1,22 +1,22 @@
 
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: webapp
-spec:
-  minReadySeconds: 8
-  selector:
-    matchLabels:
-      app: webapp
-  replicas: 2
-  template: # template for the pods
-    metadata:
-      labels:
-        app: webapp
-    spec:
-      containers:
-      - name: webapp
-        image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: webapp
+# spec:
+#   minReadySeconds: 8
+#   selector:
+#     matchLabels:
+#       app: webapp
+#   replicas: 2
+#   template: # template for the pods
+#     metadata:
+#       labels:
+#         app: webapp
+#     spec:
+#       containers:
+#       - name: webapp
+#         image: richardchesterwood/k8s-fleetman-webapp-angular:release1
 
 ---
 
@@ -111,4 +111,27 @@ spec:
         - name: SPRING_PROFILES_ACTIVE
           value: production-microservice
 
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  minReadySeconds: 8
+  selector:
+    matchLabels:
+      app: webapp
+  replicas: 1
+  template: # template for the pods
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: richardchesterwood/k8s-fleetman-webapp-angular:release1
+        env: 
+        - name: SPRING_PROFILES_ACTIVE
+          value: production-microservice
 
