@@ -57,7 +57,7 @@ spec:
         app: position-simulator
     spec:
       containers:
-      - name: webapp
+      - name: position-simulator
         image: richardchesterwood/k8s-fleetman-position-simulator:release1
         env: 
         - name: SPRING_PROFILES_ACTIVE
